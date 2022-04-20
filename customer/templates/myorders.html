@@ -1,0 +1,40 @@
+{%extends 'c_base.html'%}
+
+
+{%block body_block%}
+
+{{orders}}
+<div class="card text-center">
+    <div class="card-header">
+        my orders
+    </div>
+    {%for order in orders%}
+
+    <div class="card-body">
+        <div class="row">
+            <div class="col-3">
+                <img src="{{order.item.image.url}}" alt="" width="100%" height="200px">
+            </div>
+
+            <div class="col-3">
+                <p>Book Name:{{order.item.book_name}}</p>
+                <p>Author:{{order.item.author}}</p>
+                <p>Published Date:{{order.item.published_date}}</p>
+                <p>price:₹{{order.item.price}}</p>
+            </div>
+           <div class="col-2">
+               <p>date:{{order.date}}</p>
+               <span>{{order.status}}</span>
+               <p class="text-success">{{order.expected_delivery_date}}</p>
+           </div>
+            <div class="col-4">
+                <span>{{order.status}}</span>
+                <a href="{%url 'removeorderitem' order.id%}" class="btn btn-outline-danger">cancel order</a>
+            </div>
+        </div>
+    </div>
+
+    {%endfor%}
+
+</div>
+{%endblock%}

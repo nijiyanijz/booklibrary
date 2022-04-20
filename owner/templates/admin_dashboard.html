@@ -1,0 +1,173 @@
+{%extends 'base.html'%}
+{%block body_block%}
+
+<div class="row">
+    <div class="col-6">
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    New orders#{{new_orders|length}}
+                </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <table class="table">
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Book Name</th>
+                            <th>Date Of Order</th>
+                            <th>Phone Number</th>
+                            <th>action</th>
+                        </tr>
+                        {%for order in new_orders%}
+                        <tr>
+                            <td>{{order.user.username}}</td>
+                            <td>{{order.item.book_name}}</td>
+                            <td>{{order.date}}</td>
+                            <td>{{order.phone}}</td>
+                            <td>
+                                <a href="">View</a>
+                                <a href="{%url 'orderprocess' order.id%}">process</a>
+                            </td>
+                        </tr>
+
+                        {%endfor%}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Deliverd Orders
+                </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <table class="table">
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Book Name</th>
+                            <th>Date Of Order</th>
+                            <th>Phone Number</th>
+
+                        </tr>
+
+                         {%for order in delivered_orders%}
+                        <tr>
+                            <td>{{order.user.username}}</td>
+                            <td>{{order.item.book_name}}</td>
+                            <td>{{order.date}}</td>
+                            <td>{{order.phone}}</td>
+
+                        </tr>
+
+                        {%endfor%}
+
+
+                     </table>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-6">
+
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                    In-transit Orders#{{intransit_orders|length}}
+                </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse show" aria-labelledby="headingThree"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                     <table class="table">
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Book Name</th>
+                            <th>Date Of Order</th>
+                            <th>Phone Number</th>
+
+                        </tr>
+
+
+
+                         {%for order in intransit_orders%}
+                        <tr>
+                            <td>{{order.user.username}}</td>
+                            <td>{{order.item.book_name}}</td>
+                            <td>{{order.date}}</td>
+                            <td>{{order.phone}}</td>
+
+                        </tr>
+
+                        {%endfor%}
+
+
+                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-6">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                    Cancelled Order
+                </button>
+            </h2>
+            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                 data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <table class="table">
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Book Name</th>
+                            <th>Date Of Order</th>
+                            <th>Phone Number</th>
+
+                        </tr>
+
+
+                         {%for order in cancelled_orders%}
+                        <tr>
+                            <td>{{order.user.username}}</td>
+                            <td>{{order.item.book_name}}</td>
+                            <td>{{order.date}}</td>
+                            <td>{{order.phone}}</td>
+
+                        </tr>
+
+                        {%endfor%}
+
+
+                     </table>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{%endblock%}
